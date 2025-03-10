@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FBSDKCoreKit
 
 var arrHistory: [Data] = []{
     didSet{
@@ -32,6 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let s = UserDefaults.standard.value(forKey: "score")as? Int{
             score = s
         }
+        
+        ApplicationDelegate.shared.application(
+                    application,
+                    didFinishLaunchingWithOptions: launchOptions
+                )
         return true
     }
 
