@@ -129,7 +129,7 @@ class PokerDynamoGameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel = SKLabelNode(fontNamed: "ShortBaby")
         scoreLabel.text = "Score: 0"
         scoreLabel.fontSize = 24
-        scoreLabel.position = CGPoint(x: size.width * 0.9, y: size.height * 0.9)
+        scoreLabel.position = CGPoint(x: size.width * 0.7, y: size.height * 0.9)
         addChild(scoreLabel)
     }
     
@@ -199,9 +199,10 @@ class PokerDynamoGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        // Prevent player from moving left beyond the screen edge
-        if player.position.x < player.size.width / 2 {
-            player.position.x = player.size.width / 2
+        
+        if player.position.x < player.size.width / 2  {
+            player.position.x = player.size.width / 2 + 100
+            loseLife()
         }
         
         // Keep the bomb warning beeping logic
@@ -261,6 +262,7 @@ class PokerDynamoGameScene: SKScene, SKPhysicsContactDelegate {
         
         obstacle.physicsBody = SKPhysicsBody(rectangleOf: obstacle.size)
         obstacle.physicsBody?.isDynamic = false
+//        obstacle.physicsBody?.categoryBitMask = obstacleCategory
         obstacle.physicsBody?.contactTestBitMask = playerCategory
         obstacle.name = "obstacle"
         
